@@ -8,7 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    //could use [AnyObject]
+    var arrayOfExercises: [String] = []
+    
+    //table view
+    @IBOutlet
+    var exerciseTable: UITableView!
 
     override func viewDidLoad()
     {
@@ -21,6 +28,30 @@ class ViewController: UIViewController {
         //Add plus button
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.addPersonalRecord))
         
+    }
+    
+    
+    func saveExercises()
+    {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(arrayOfExercises, forKey: "tableViewExercises")
+    }
+    
+    func loadExercises()
+    {
+        //load the saved exercises
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let storedArray = userDefaults.objectForKey("tableViewExercises")
+        if(storedArray == nil)
+        {
+            //initialize data structure that holds exercises
+            arrayOfExercises = [];
+        }
+        else
+        {
+            //make search terms equal to the array that was stored
+            arrayOfExercises = storedArray as! [String]
+        }
     }
     
     func addPersonalRecord()
@@ -42,6 +73,24 @@ class ViewController: UIViewController {
             //Save word in array here
             
             NSLog("Text entered: " + (inputTextField?.text)!)
+            
+            let exercise = inputTextField!.text
+            
+            //usually would check for nil here, wasn't working in swift for some reason
+            
+            self.arrayOfExercises.insert(exercise!, atIndex: 0)
+            
+            //save array
+            self.saveExercises()
+            
+            //work with table here
+            
+            //Both 0 because adding to the top of the table
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            
+            //Add to table
+            self.exerciseTable.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
         }))
         
         //add text field
@@ -54,10 +103,83 @@ class ViewController: UIViewController {
         presentViewController(alert, animated: true, completion: nil);
         
         
-        
-        
-        
     }
+    
+    //---------------------------------------------
+    //Table View Stuff
+    
+    //setEditing
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        exerciseTable.setEditing(editing, animated: animated)
+    }
+    
+    //number of sections
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 1;
+    }
+    
+    //table view number of rows
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return arrayOfExercises.count
+    }
+    
+    //table view cell for row at index path
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cellIdentifier = "Cell"
+        
+        var cellToReturn = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        
+        if(cellToReturn == nil)
+        {
+            cellToReturn = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+        }
+        
+        //call a get content function and put content here
+        
+        cellToReturn?.textLabel?.text = self.arrayOfExercises[indexPath.row]
+        
+        return cellToReturn!
+    }
+    
+    
+    //did select row at index path
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        NSLog("Cell at row number: \(indexPath.row)")
+    }
+    
+    //table view can edit row at index path
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return true;
+    }
+    
+    //table view commit editing style/swipe to delete
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete)
+        {
+            //remove from array
+            arrayOfExercises.removeAtIndex(indexPath.row)
+            
+            //save array
+            self.saveExercises()
+            
+            //remove from table view
+            exerciseTable.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        }
+    }
+    
+    //can move cell
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        //for now leave this as false, maybe moving can be done later
+        return false;
+    }
+    
 
     override func didReceiveMemoryWarning()
     {
