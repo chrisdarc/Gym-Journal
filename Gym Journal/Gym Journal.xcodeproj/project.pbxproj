@@ -14,6 +14,7 @@
 		830704F71CA627D800EA8C1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 830704F51CA627D800EA8C1B /* LaunchScreen.storyboard */; };
 		830705021CA627D800EA8C1B /* Gym_JournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830705011CA627D800EA8C1B /* Gym_JournalTests.swift */; };
 		8307050D1CA627D800EA8C1B /* Gym_JournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8307050C1CA627D800EA8C1B /* Gym_JournalUITests.swift */; };
+		83408B4C1CA9A3460046A37B /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83408B4B1CA9A3460046A37B /* AddExerciseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		830705081CA627D800EA8C1B /* Gym JournalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gym JournalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8307050C1CA627D800EA8C1B /* Gym_JournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym_JournalUITests.swift; sourceTree = "<group>"; };
 		8307050E1CA627D800EA8C1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83408B4B1CA9A3460046A37B /* AddExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				830704EC1CA627D800EA8C1B /* AppDelegate.swift */,
 				830704EE1CA627D800EA8C1B /* ViewController.swift */,
 				830704F01CA627D800EA8C1B /* Main.storyboard */,
+				83408B4B1CA9A3460046A37B /* AddExerciseViewController.swift */,
 				830704F31CA627D800EA8C1B /* Assets.xcassets */,
 				830704F51CA627D800EA8C1B /* LaunchScreen.storyboard */,
 				830704F81CA627D800EA8C1B /* Info.plist */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83408B4C1CA9A3460046A37B /* AddExerciseViewController.swift in Sources */,
 				830704EF1CA627D800EA8C1B /* ViewController.swift in Sources */,
 				830704ED1CA627D800EA8C1B /* AppDelegate.swift in Sources */,
 			);
@@ -484,6 +488,7 @@
 				830705131CA627D800EA8C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		830705141CA627D800EA8C1B /* Build configuration list for PBXNativeTarget "Gym JournalTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +497,7 @@
 				830705161CA627D800EA8C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		830705171CA627D800EA8C1B /* Build configuration list for PBXNativeTarget "Gym JournalUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +506,7 @@
 				830705191CA627D800EA8C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

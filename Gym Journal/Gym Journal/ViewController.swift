@@ -24,51 +24,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //-----------------------
         
-        NSLog("TEST1")
-        
         //load the exercises
         self.loadExercises()
-        
-        NSLog("TEST2")
         
         //Add edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-        //Add plus button
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.addPersonalRecord))
-        
-        NSLog("TEST3")
-        
+        //Add plus button - decided to do this with a storyboard and segue instead
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.addPersonalRecord))
     }
     
     
     func saveExercises()
     {
-        NSLog("Save1")
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setObject(arrayOfExercises, forKey: "tableViewExercises")
         userDefaults.synchronize()
-        NSLog("Save2")
     }
     
     func loadExercises()
     {
-        NSLog("Load1")
         //load the saved exercises
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let storedArray = userDefaults.objectForKey("tableViewExercises")
-        if(storedArray == nil)
+        if(storedArray!.count == 0)
         {
             //initialize data structure that holds exercises
             arrayOfExercises = [];
         }
         else
         {
-            let selectedIndices = NSMutableIndexSet(indexesInRange: NSRange(0...storedArray!.count-1))
-            //make search terms equal to the array that was stored
-            arrayOfExercises.insertObjects(storedArray as! [AnyObject], atIndexes: selectedIndices)// = storedArray as! NSMutableArray//as! [String]
+            //need to make sure that the arrayOfExercises is mutable, found two ways to do this, I like the second. Simpler. First way left here just in case.
+//            let selectedIndices = NSMutableIndexSet(indexesInRange: NSRange(0...storedArray!.count-1))
+//            //make search terms equal to the array that was stored
+//            arrayOfExercises.insertObjects(storedArray as! [AnyObject], atIndexes: selectedIndices)
+            
+            arrayOfExercises = (storedArray?.mutableCopy())! as! NSMutableArray
+            
         }
-        NSLog("Load2")
     }
     
     func addPersonalRecord()
@@ -91,25 +84,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             NSLog("Text entered: " + (inputTextField?.text)!)
             
-            NSLog("GOT HERE 1")
-            
             let exercise = inputTextField!.text
             
             var nestedArray: [String] = []
             
-            NSLog("GOT HERE 2")
-            
             nestedArray.insert(exercise!, atIndex: 0)
             nestedArray.insert("195lbs for 1 rep", atIndex: 1)
-            
-            NSLog("GOT HERE 3")
             
             //usually would check for nil here, wasn't working in swift for some reason
             
             self.arrayOfExercises.insertObject(nestedArray, atIndex: 0)
-            
-            NSLog("GOT HERE 4")
-            
+                        
             //save array
             self.saveExercises()
             
@@ -215,6 +200,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //for now leave this as false, maybe moving can be done later
         return false;
     }
+    
+//    //Looks like this is not required when using a storyboard with swift
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+//    {
+//        if(segue.identifier == "toAddExercise")
+//        {
+//            if let addExerciseViewController = segue.destinationViewController as? AddExerciseViewController
+//            {
+//                let enclosingNav = UINavigationController.init(rootViewController: addExerciseViewController)
+//                //addExerciseViewController.delete(self)
+//                self.parentViewController?.presentViewController(enclosingNav, animated: true, completion: nil)
+//                //self.presentViewController(enclosingNav, animated: true, completion: nil)
+//            }
+//        }
+//    }
     
 
     override func didReceiveMemoryWarning()

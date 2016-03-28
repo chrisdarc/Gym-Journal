@@ -34,7 +34,13 @@
                             <constraint firstAttribute="trailing" secondItem="5m7-eb-PmV" secondAttribute="trailing" id="laq-y7-Yie"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Gym Journal" id="H7S-Zo-bM1"/>
+                    <navigationItem key="navigationItem" title="Gym Journal" id="H7S-Zo-bM1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ShJ-f5-NRp">
+                            <connections>
+                                <segue destination="ZO8-oI-OB4" kind="presentation" identifier="toAddExercise" id="P1q-ol-cpF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="exerciseTable" destination="5m7-eb-PmV" id="FcY-LE-OSa"/>
                     </connections>
@@ -42,6 +48,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1377" y="479"/>
+        </scene>
+        <!--Add Exercise-->
+        <scene sceneID="Qbf-Uh-T8S">
+            <objects>
+                <viewController storyboardIdentifier="AddExercise" id="EWz-IX-BHj" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UXg-fF-kCh"/>
+                        <viewControllerLayoutGuide type="bottom" id="rJA-DB-tVi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fVX-E6-yEa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Exercise" id="VXO-mW-vOK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZP-Du-Oiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2189" y="1260"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DSu-OZ-4OR">
@@ -60,6 +85,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sVv-2k-RdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="600" y="479"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FIV-Dt-j1B">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZO8-oI-OB4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uH2-ZA-FTg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EWz-IX-BHj" kind="relationship" relationship="rootViewController" id="eVb-9H-6Iq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6P-N4-tYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="1260"/>
         </scene>
     </scenes>
 </document>
