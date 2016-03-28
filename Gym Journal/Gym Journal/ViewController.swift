@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     //could use [AnyObject]
-    var arrayOfExercises: [String] = []
+    var arrayOfExercises: NSMutableArray = []
     
     //table view
     @IBOutlet
@@ -22,23 +22,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //-----------------------
+        
+        NSLog("TEST1")
+        
+        //load the exercises
+        self.loadExercises()
+        
+        NSLog("TEST2")
+        
         //Add edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         //Add plus button
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.addPersonalRecord))
         
+        NSLog("TEST3")
+        
     }
     
     
     func saveExercises()
     {
+        NSLog("Save1")
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setObject(arrayOfExercises, forKey: "tableViewExercises")
+        userDefaults.synchronize()
+        NSLog("Save2")
     }
     
     func loadExercises()
     {
+        NSLog("Load1")
         //load the saved exercises
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let storedArray = userDefaults.objectForKey("tableViewExercises")
@@ -49,9 +64,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         else
         {
+            let selectedIndices = NSMutableIndexSet(indexesInRange: NSRange(0...storedArray!.count-1))
             //make search terms equal to the array that was stored
-            arrayOfExercises = storedArray as! [String]
+            arrayOfExercises.insertObjects(storedArray as! [AnyObject], atIndexes: selectedIndices)// = storedArray as! NSMutableArray//as! [String]
         }
+        NSLog("Load2")
     }
     
     func addPersonalRecord()
@@ -74,11 +91,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             NSLog("Text entered: " + (inputTextField?.text)!)
             
+            NSLog("GOT HERE 1")
+            
             let exercise = inputTextField!.text
+            
+            var nestedArray: [String] = []
+            
+            NSLog("GOT HERE 2")
+            
+            nestedArray.insert(exercise!, atIndex: 0)
+            nestedArray.insert("195lbs for 1 rep", atIndex: 1)
+            
+            NSLog("GOT HERE 3")
             
             //usually would check for nil here, wasn't working in swift for some reason
             
-            self.arrayOfExercises.insert(exercise!, atIndex: 0)
+            self.arrayOfExercises.insertObject(nestedArray, atIndex: 0)
+            
+            NSLog("GOT HERE 4")
             
             //save array
             self.saveExercises()
@@ -135,12 +165,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if(cellToReturn == nil)
         {
-            cellToReturn = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            cellToReturn = UITableViewCell(style: .Value1, reuseIdentifier: cellIdentifier)
         }
         
-        //call a get content function and put content here
         
-        cellToReturn?.textLabel?.text = self.arrayOfExercises[indexPath.row]
+        //Customize cell here
+        
+        
+        //call a get content function and put content here
+        let tempArray = self.arrayOfExercises[indexPath.row] as! [String]
+        
+        cellToReturn?.textLabel?.text = tempArray[0]
+        cellToReturn?.detailTextLabel?.text = tempArray[1]
         
         return cellToReturn!
     }
@@ -163,7 +199,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if (editingStyle == UITableViewCellEditingStyle.Delete)
         {
             //remove from array
-            arrayOfExercises.removeAtIndex(indexPath.row)
+            arrayOfExercises.removeObjectAtIndex(indexPath.row)//removeAtIndex(indexPath.row)
             
             //save array
             self.saveExercises()
