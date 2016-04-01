@@ -38,7 +38,7 @@
                     <navigationItem key="navigationItem" title="Gym Journal" id="H7S-Zo-bM1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ShJ-f5-NRp">
                             <connections>
-                                <segue destination="ZO8-oI-OB4" kind="presentation" identifier="toAddExercise" id="P1q-ol-cpF"/>
+                                <segue destination="ZO8-oI-OB4" kind="presentation" identifier="toExerciseInput" id="P1q-ol-cpF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -53,7 +53,7 @@
         <!--Exercise-->
         <scene sceneID="Qbf-Uh-T8S">
             <objects>
-                <viewController storyboardIdentifier="AddExercise" id="EWz-IX-BHj" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExerciseInput" title="Exercise" id="EWz-IX-BHj" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UXg-fF-kCh"/>
                         <viewControllerLayoutGuide type="bottom" id="rJA-DB-tVi"/>
@@ -84,22 +84,30 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Exercise" id="VXO-mW-vOK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZVe-QV-yZ8"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZVe-QV-yZ8">
+                            <connections>
+                                <action selector="exerciseCancelButtonPressed:" destination="EWz-IX-BHj" id="Cgm-ev-NO8"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Qgn-VZ-pbO">
                             <connections>
-                                <segue destination="Z6S-FR-0PI" kind="show" identifier="toWeightAndReps" id="nKV-O2-O9v"/>
+                                <action selector="exerciseInputNextPressed:" destination="EWz-IX-BHj" id="Myf-zt-fAQ"/>
+                                <segue destination="Z6S-FR-0PI" kind="show" identifier="toWeightInput" id="nKV-O2-O9v"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="exerciseInputText" destination="fjD-lz-l9g" id="3ua-Mf-uqt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZP-Du-Oiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2189" y="1260"/>
         </scene>
-        <!--Weight and Reps-->
+        <!--Weight-->
         <scene sceneID="zGE-o5-yc8">
             <objects>
-                <viewController title="Weight and Reps" id="Z6S-FR-0PI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeightInput" title="Weight" id="Z6S-FR-0PI" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZHr-yx-NfI"/>
                         <viewControllerLayoutGuide type="bottom" id="ifN-XN-qvU"/>
@@ -142,10 +150,15 @@
                     <navigationItem key="navigationItem" title="Weight" id="kbj-WC-8Uu">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="iVI-3J-1Mb">
                             <connections>
-                                <segue destination="Rk2-yt-C4X" kind="show" identifier="toDate" id="D3Z-q4-a9r"/>
+                                <action selector="weightInputNextPressed:" destination="Z6S-FR-0PI" id="hQY-Nr-thD"/>
+                                <segue destination="Rk2-yt-C4X" kind="show" identifier="toDateInput" id="D3Z-q4-a9r"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="weightInputText" destination="A7m-0X-1eq" id="57x-DQ-RN2"/>
+                        <outlet property="weightInputUnitChooser" destination="hsG-2J-4qm" id="dtS-kz-Oba"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KCT-8W-q8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -154,7 +167,7 @@
         <!--Reps-->
         <scene sceneID="96y-Md-3zT">
             <objects>
-                <viewController id="Rk2-yt-C4X" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepsInput" title="Reps" id="Rk2-yt-C4X" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JCS-8C-oI0"/>
                         <viewControllerLayoutGuide type="bottom" id="ukb-ud-Kxe"/>
@@ -185,10 +198,14 @@
                     <navigationItem key="navigationItem" title="Reps" id="OE6-kr-cB8">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="bvp-fx-NJX">
                             <connections>
-                                <segue destination="DeE-Ci-p0p" kind="show" id="13L-yT-FYx"/>
+                                <action selector="repsInputNextPressed:" destination="Rk2-yt-C4X" id="PWc-jF-vW4"/>
+                                <segue destination="DeE-Ci-p0p" kind="show" identifier="toDateInput" id="13L-yT-FYx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="repsInputPicker" destination="uBD-9C-9aH" id="MPG-jq-Zno"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSw-ie-L5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,7 +214,7 @@
         <!--Date-->
         <scene sceneID="aQk-Az-fkt">
             <objects>
-                <viewController id="DeE-Ci-p0p" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DateInput" title="Date" id="DeE-Ci-p0p" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="swe-Uw-BKQ"/>
                         <viewControllerLayoutGuide type="bottom" id="r4t-Sq-jxq"/>
@@ -229,8 +246,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Date" id="ej0-fX-q7y">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9Rh-8I-pdK"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9Rh-8I-pdK">
+                            <connections>
+                                <action selector="dateDoneButtonPressed:" destination="DeE-Ci-p0p" id="8A7-7H-Qrn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dateInputPicker" destination="2A6-pO-Hyy" id="7tr-g1-c3c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXd-fz-alh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

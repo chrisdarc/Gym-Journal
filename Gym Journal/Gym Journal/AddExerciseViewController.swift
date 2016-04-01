@@ -10,6 +10,26 @@ import UIKit
 
 class AddExerciseViewController: UIViewController {
 
+    //Input Outlets---------------------------------------------
+    
+    //exerciseInput
+    @IBOutlet weak var exerciseInputText: UITextField!
+    
+    //weightInput
+    @IBOutlet weak var weightInputUnitChooser: UISegmentedControl!
+    @IBOutlet weak var weightInputText: UITextField!
+    
+    //repsInput
+    @IBOutlet weak var repsInputPicker: UIPickerView!
+    
+    
+    //dateInput
+    @IBOutlet weak var dateInputPicker: UIDatePicker!
+    
+    
+    
+    //Default functions-----------------------------------------
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -23,6 +43,51 @@ class AddExerciseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
         
     }
+    
+    
+    //Get and save input functions------------------------------
+    
+    @IBAction func exerciseInputNextPressed(sender: AnyObject)
+    {
+        
+    }
+    
+    
+    @IBAction func weightInputNextPressed(sender: AnyObject)
+    {
+        
+    }
+    
+    
+    @IBAction func repsInputNextPressed(sender: AnyObject)
+    {
+        
+    }
+    
+    
+    
+    
+    //dismiss functions-----------------------------------------
+    
+    @IBAction func exerciseCancelButtonPressed(sender: AnyObject)
+    {
+        self.dismissAddExerciseViewController()
+    }
+    
+    //this function also used to store info from date picker.
+    @IBAction func dateDoneButtonPressed(sender: AnyObject)
+    {
+        self.dismissAddExerciseViewController()
+    }
+    
+    func dismissAddExerciseViewController()
+    {
+        //dismiss view controller
+        //delegate work here
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     
 
     /*
