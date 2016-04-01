@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddExerciseViewController: UIViewController {
+class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    //Input Outlets---------------------------------------------
+    //Input Outlets and other useful stuff-----------------------
     
     //exerciseInput
     @IBOutlet weak var exerciseInputText: UITextField!
@@ -21,11 +21,10 @@ class AddExerciseViewController: UIViewController {
     
     //repsInput
     @IBOutlet weak var repsInputPicker: UIPickerView!
-    
+    var repsInputPickerResult = 1
     
     //dateInput
     @IBOutlet weak var dateInputPicker: UIDatePicker!
-    
     
     
     //Default functions-----------------------------------------
@@ -34,6 +33,7 @@ class AddExerciseViewController: UIViewController {
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         
     }
 
@@ -44,6 +44,30 @@ class AddExerciseViewController: UIViewController {
         
     }
     
+    
+    //dateInputPicker - setup------------------------------------
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
+        return 1;
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return 100
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+        //plus 1 so that picker view starts at 1 and goes to 100
+        return String(row+1)
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        repsInputPickerResult = row+1
+        //testing
+        NSLog("repsInputPickerResult: " + String(repsInputPickerResult))
+    }
     
     //Get and save input functions------------------------------
     
