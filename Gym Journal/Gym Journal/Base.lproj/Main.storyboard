@@ -84,6 +84,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Exercise" id="VXO-mW-vOK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZVe-QV-yZ8"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Qgn-VZ-pbO">
                             <connections>
                                 <segue destination="Z6S-FR-0PI" kind="show" identifier="toWeightAndReps" id="nKV-O2-O9v"/>

@@ -46,21 +46,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         //load the saved exercises
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        let storedArray = userDefaults.objectForKey("tableViewExercises")
-        if(storedArray!.count == 0)
+        if let storedArray = userDefaults.objectForKey("tableViewExercises")
         {
-            //initialize data structure that holds exercises
-            arrayOfExercises = [];
-        }
-        else
-        {
-            //need to make sure that the arrayOfExercises is mutable, found two ways to do this, I like the second. Simpler. First way left here just in case.
-//            let selectedIndices = NSMutableIndexSet(indexesInRange: NSRange(0...storedArray!.count-1))
-//            //make search terms equal to the array that was stored
-//            arrayOfExercises.insertObjects(storedArray as! [AnyObject], atIndexes: selectedIndices)
-            
-            arrayOfExercises = (storedArray?.mutableCopy())! as! NSMutableArray
-            
+            if(storedArray.count == 0)
+            {
+                //initialize data structure that holds exercises
+                arrayOfExercises = [];
+            }
+                
+            else
+            {
+                //need to make sure that the arrayOfExercises is mutable, found two ways to do this, I like the second. Simpler. First way left here just in case.
+                //            let selectedIndices = NSMutableIndexSet(indexesInRange: NSRange(0...storedArray!.count-1))
+                //            //make search terms equal to the array that was stored
+                //            arrayOfExercises.insertObjects(storedArray as! [AnyObject], atIndexes: selectedIndices)
+                
+                arrayOfExercises = (storedArray.mutableCopy()) as! NSMutableArray
+                
+            }
         }
     }
     
