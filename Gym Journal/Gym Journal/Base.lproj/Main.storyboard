@@ -91,7 +91,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Qgn-VZ-pbO">
                             <connections>
-                                <action selector="exerciseInputNextPressed:" destination="EWz-IX-BHj" id="Myf-zt-fAQ"/>
                                 <segue destination="Z6S-FR-0PI" kind="show" identifier="toWeightInput" id="nKV-O2-O9v"/>
                             </connections>
                         </barButtonItem>
@@ -150,8 +149,7 @@
                     <navigationItem key="navigationItem" title="Weight" id="kbj-WC-8Uu">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="iVI-3J-1Mb">
                             <connections>
-                                <action selector="weightInputNextPressed:" destination="Z6S-FR-0PI" id="hQY-Nr-thD"/>
-                                <segue destination="Rk2-yt-C4X" kind="show" identifier="toDateInput" id="D3Z-q4-a9r"/>
+                                <segue destination="Rk2-yt-C4X" kind="show" identifier="toRepsInput" id="D3Z-q4-a9r"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -202,7 +200,6 @@
                     <navigationItem key="navigationItem" title="Reps" id="OE6-kr-cB8">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="bvp-fx-NJX">
                             <connections>
-                                <action selector="repsInputNextPressed:" destination="Rk2-yt-C4X" id="PWc-jF-vW4"/>
                                 <segue destination="DeE-Ci-p0p" kind="show" identifier="toDateInput" id="13L-yT-FYx"/>
                             </connections>
                         </barButtonItem>

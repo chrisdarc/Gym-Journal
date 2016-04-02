@@ -8,10 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddExerciseViewControllerDelegate
+{
+    //Array to store all exercises.
     //could use [AnyObject]
     var arrayOfExercises: NSMutableArray = []
+    
+    //dictionary to store items
+    var exerciseDetails:[String:String] = [:]
     
     //table view
     @IBOutlet
@@ -63,6 +67,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 arrayOfExercises = (storedArray.mutableCopy()) as! NSMutableArray
                 
+            }
+        }
+    }
+    
+    func addInputtedExerciseAttribute(sender: AddExerciseViewController, exerciseKey: String, exerciseValue: String)
+    {
+        NSLog("Added to dictionary")
+        exerciseDetails[exerciseKey] = exerciseValue
+    }
+    
+    
+    func saveInputtedExerciseAttribute(sender: AddExerciseViewController)
+    {
+        NSLog("Save");
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(exerciseDetails, forKey: "currentInputtedExercise")
+        userDefaults.synchronize()
+        
+        //print for testing
+        NSLog("Exercise Details: ")
+        NSLog(exerciseDetails["exerciseName"]!)
+        NSLog(exerciseDetails["weightUnits"]!)
+        NSLog(exerciseDetails["weightAmount"]!)
+        NSLog(exerciseDetails["repsNumber"]!)
+        NSLog(exerciseDetails["dateRecorded"]!)
+    }
+    
+    
+    func loadInputtedExerciseAttribute()
+    {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if let storedDictionary = userDefaults.objectForKey("currentInputtedExercise")
+        {
+            if(storedDictionary.count == 0)
+            {
+                //initialize data structure that holds exercise details
+                exerciseDetails = [:];
+            }
+                
+            else
+            {
+                exerciseDetails = storedDictionary.mutableCopy() as! [String : String]
             }
         }
     }
@@ -204,20 +250,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return false;
     }
     
-//    //Looks like this is not required when using a storyboard with swift
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-//    {
-//        if(segue.identifier == "toAddExercise")
-//        {
-//            if let addExerciseViewController = segue.destinationViewController as? AddExerciseViewController
-//            {
-//                let enclosingNav = UINavigationController.init(rootViewController: addExerciseViewController)
-//                //addExerciseViewController.delete(self)
-//                self.parentViewController?.presentViewController(enclosingNav, animated: true, completion: nil)
-//                //self.presentViewController(enclosingNav, animated: true, completion: nil)
-//            }
-//        }
-//    }
+    //Looks like this is not required when using a storyboard with swift
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if(segue.identifier == "toExerciseInput")
+        {
+            NSLog("Reached1")
+            let nav = segue.destinationViewController as! UINavigationController
+            let addExerciseViewController = nav.topViewController as! AddExerciseViewController
+            NSLog("Reached2")
+            addExerciseViewController.delegate = self
+        }
+    }
     
 
     override func didReceiveMemoryWarning()
