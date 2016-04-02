@@ -15,6 +15,8 @@
 		830705021CA627D800EA8C1B /* Gym_JournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830705011CA627D800EA8C1B /* Gym_JournalTests.swift */; };
 		8307050D1CA627D800EA8C1B /* Gym_JournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8307050C1CA627D800EA8C1B /* Gym_JournalUITests.swift */; };
 		83408B4C1CA9A3460046A37B /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83408B4B1CA9A3460046A37B /* AddExerciseViewController.swift */; };
+		83480FA81CB039F8009D69AA /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83480FA61CB039F8009D69AA /* ExerciseTableViewCell.swift */; };
+		83480FA91CB039F8009D69AA /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83480FA71CB039F8009D69AA /* ExerciseTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		8307050C1CA627D800EA8C1B /* Gym_JournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym_JournalUITests.swift; sourceTree = "<group>"; };
 		8307050E1CA627D800EA8C1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83408B4B1CA9A3460046A37B /* AddExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
+		83480FA61CB039F8009D69AA /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		83480FA71CB039F8009D69AA /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				830704F31CA627D800EA8C1B /* Assets.xcassets */,
 				830704F51CA627D800EA8C1B /* LaunchScreen.storyboard */,
 				830704F81CA627D800EA8C1B /* Info.plist */,
+				83480FA61CB039F8009D69AA /* ExerciseTableViewCell.swift */,
+				83480FA71CB039F8009D69AA /* ExerciseTableViewCell.xib */,
 			);
 			path = "Gym Journal";
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				830704F71CA627D800EA8C1B /* LaunchScreen.storyboard in Resources */,
+				83480FA91CB039F8009D69AA /* ExerciseTableViewCell.xib in Resources */,
 				830704F41CA627D800EA8C1B /* Assets.xcassets in Resources */,
 				830704F21CA627D800EA8C1B /* Main.storyboard in Resources */,
 			);
@@ -261,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83408B4C1CA9A3460046A37B /* AddExerciseViewController.swift in Sources */,
+				83480FA81CB039F8009D69AA /* ExerciseTableViewCell.swift in Sources */,
 				830704EF1CA627D800EA8C1B /* ViewController.swift in Sources */,
 				830704ED1CA627D800EA8C1B /* AppDelegate.swift in Sources */,
 			);

@@ -16,11 +16,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //dictionary to store items
     var exerciseDetails:[String:String] = [:]
+    //can have the keys
+    //"exerciseName"
+    //"weightUnits"
+    //"weightAmount"
+    //"repsNumber"
+    //"dateRecorded"
     
     //table view
     @IBOutlet
     var exerciseTable: UITableView!
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -36,8 +42,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //Add plus button - decided to do this with a storyboard and segue instead
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.addPersonalRecord))
+        
+        let ExerciseTableViewCellNib = UINib(nibName: "ExerciseTableViewCell", bundle: nil)
+        
+        self.exerciseTable.registerNib(ExerciseTableViewCellNib, forCellReuseIdentifier: "Cell")
     }
-    
     
     func saveExercises()
     {
@@ -77,41 +86,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         exerciseDetails[exerciseKey] = exerciseValue
     }
     
-    
-//    func saveInputtedExerciseAttribute(sender: AddExerciseViewController)
-//    {
-//        NSLog("Save");
-//        let userDefaults = NSUserDefaults.standardUserDefaults()
-//        userDefaults.setObject(exerciseDetails, forKey: "currentInputtedExercise")
-//        userDefaults.synchronize()
-//        
-//        //print for testing
-//        NSLog("Exercise Details: ")
-//        NSLog(exerciseDetails["exerciseName"]!)
-//        NSLog(exerciseDetails["weightUnits"]!)
-//        NSLog(exerciseDetails["weightAmount"]!)
-//        NSLog(exerciseDetails["repsNumber"]!)
-//        NSLog(exerciseDetails["dateRecorded"]!)
-//    }
-//    
-//    
-//    func loadInputtedExerciseAttribute()
-//    {
-//        let userDefaults = NSUserDefaults.standardUserDefaults()
-//        if let storedDictionary = userDefaults.objectForKey("currentInputtedExercise")
-//        {
-//            if(storedDictionary.count == 0)
-//            {
-//                //initialize data structure that holds exercise details
-//                exerciseDetails = [:];
-//            }
-//                
-//            else
-//            {
-//                exerciseDetails = storedDictionary.mutableCopy() as! [String : String]
-//            }
-//        }
-//    }
+    func eraseExerciseDetailsDictionary()
+    {
+        exerciseDetails = [:]
+    }
     
     func addPersonalRecord(sender: AddExerciseViewController)
     {
@@ -203,30 +181,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //table view cell for row at index path
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+//        let cellIdentifier = "Cell"
+//        
+//        var cellToReturn = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+//        
+//        if(cellToReturn == nil)
+//        {
+//            cellToReturn = UITableViewCell(style: .Value1, reuseIdentifier: cellIdentifier)
+//        }
+        
         let cellIdentifier = "Cell"
         
-        var cellToReturn = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        //let cellToReturn =  tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! ExerciseTableViewCell
         
-        if(cellToReturn == nil)
-        {
-            cellToReturn = UITableViewCell(style: .Value1, reuseIdentifier: cellIdentifier)
-        }
-        
+        let cellToReturn = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExerciseTableViewCell
         
         //Customize cell here
         
         //call a get content function and put content here
         let tempDictionary = self.arrayOfExercises[indexPath.row]
         
-        let exName: String = tempDictionary["exerciseName"] as! String
+        let exerciseName: String = tempDictionary["exerciseName"] as! String
         
-        let weight: String = tempDictionary["weightAmount"] as! String
+        let weightAmount: String = tempDictionary["weightAmount"] as! String
         
-        cellToReturn!.textLabel!.text = exName;
-        cellToReturn?.detailTextLabel!.text = weight;
+        let weightUnits: String = tempDictionary["weightUnits"] as! String
+        
+        let repsNumber: String = tempDictionary["repsNumber"] as! String
+        
+        let dateRecorded: String = tempDictionary["dateRecorded"] as! String
+        
+        cellToReturn.ExerciseNameLabel.text = exerciseName
+        
+        cellToReturn.WeightAndRepsLabel.text = weightAmount + weightUnits + " for " + repsNumber + " reps "
+        
+        cellToReturn.DateRecordedLabel.text = dateRecorded
         
         
-        return cellToReturn!
+        //cellToReturn!.textLabel!.text = exerciseName;
+        //cellToReturn?.detailTextLabel!.text = weightAmount+weightUnits + " for " + repsNumber + " reps"
+        
+        
+        return cellToReturn
     }
     
     
@@ -269,10 +265,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         if(segue.identifier == "toExerciseInput")
         {
-            NSLog("Reached1")
             let nav = segue.destinationViewController as! UINavigationController
             let addExerciseViewController = nav.topViewController as! AddExerciseViewController
-            NSLog("Reached2")
             addExerciseViewController.delegate = self
         }
     }

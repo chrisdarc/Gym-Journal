@@ -13,8 +13,6 @@ protocol AddExerciseViewControllerDelegate: class
 {
     func addInputtedExerciseAttribute(sender: AddExerciseViewController, exerciseKey: String, exerciseValue: String)
     
-    //func saveInputtedExerciseAttribute(sender: AddExerciseViewController)
-    
     func addPersonalRecord(sender: AddExerciseViewController)
 }
 
@@ -96,7 +94,8 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
     {
         delegate?.addInputtedExerciseAttribute(self, exerciseKey: "dateRecorded", exerciseValue: dateInputPicker.date.description)
         
-        //delegate?.saveInputtedExerciseAttribute(self)
+        
+        delegate?.addPersonalRecord(self)
         
         self.dismissAddExerciseViewController()
     }
@@ -104,7 +103,6 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func dismissAddExerciseViewController()
     {
         //dismiss view controller
-        delegate?.addPersonalRecord(self)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -131,8 +129,8 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         else if(segue.identifier == "toRepsInput")
         {
-            delegate?.addInputtedExerciseAttribute(self, exerciseKey: "weightUnits", exerciseValue: String(weightInputUnitChooser.selectedSegmentIndex))
-            
+            delegate?.addInputtedExerciseAttribute(self, exerciseKey: "weightUnits", exerciseValue: weightInputUnitChooser.titleForSegmentAtIndex(weightInputUnitChooser.selectedSegmentIndex)!)
+                
             delegate?.addInputtedExerciseAttribute(self, exerciseKey: "weightAmount", exerciseValue: weightInputText.text!)
             
             let toDate = segue.destinationViewController as! AddExerciseViewController
