@@ -13,7 +13,9 @@ protocol AddExerciseViewControllerDelegate: class
 {
     func addInputtedExerciseAttribute(sender: AddExerciseViewController, exerciseKey: String, exerciseValue: String)
     
-    func saveInputtedExerciseAttribute(sender: AddExerciseViewController)
+    //func saveInputtedExerciseAttribute(sender: AddExerciseViewController)
+    
+    func addPersonalRecord(sender: AddExerciseViewController)
 }
 
 class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -92,13 +94,9 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //this function also used to store info from date picker.
     @IBAction func dateDoneButtonPressed(sender: AnyObject)
     {
-        NSLog("Send Delegate")
         delegate?.addInputtedExerciseAttribute(self, exerciseKey: "dateRecorded", exerciseValue: dateInputPicker.date.description)
-        NSLog("Done Send")
         
-        NSLog("Send Save")
-        delegate?.saveInputtedExerciseAttribute(self)
-        NSLog("Done Save")
+        //delegate?.saveInputtedExerciseAttribute(self)
         
         self.dismissAddExerciseViewController()
     }
@@ -106,7 +104,7 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func dismissAddExerciseViewController()
     {
         //dismiss view controller
-        //delegate work here if needed
+        delegate?.addPersonalRecord(self)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -125,9 +123,7 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //save all values entered here before segues, put them in a dictionary in the ViewController class.
         if(segue.identifier == "toWeightInput")
         {
-            NSLog("Send delegate")
             delegate?.addInputtedExerciseAttribute(self, exerciseKey: "exerciseName", exerciseValue: exerciseInputText.text!)
-            NSLog("Done Send")
             
             let toWeight = segue.destinationViewController as! AddExerciseViewController
             toWeight.delegate = self.delegate
@@ -135,22 +131,16 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         else if(segue.identifier == "toRepsInput")
         {
-            NSLog("Send delegate")
             delegate?.addInputtedExerciseAttribute(self, exerciseKey: "weightUnits", exerciseValue: String(weightInputUnitChooser.selectedSegmentIndex))
-            NSLog("Done Send")
             
-            NSLog("Send delegate")
             delegate?.addInputtedExerciseAttribute(self, exerciseKey: "weightAmount", exerciseValue: weightInputText.text!)
-            NSLog("Done Send")
             
             let toDate = segue.destinationViewController as! AddExerciseViewController
             toDate.delegate = self.delegate
         }
         else if(segue.identifier == "toDateInput")
         {
-            NSLog("Send delegate")
             delegate?.addInputtedExerciseAttribute(self, exerciseKey: "repsNumber", exerciseValue: String(repsInputPickerResult))
-            NSLog("Done Send")
             
             let toDone = segue.destinationViewController as! AddExerciseViewController
             toDone.delegate = self.delegate

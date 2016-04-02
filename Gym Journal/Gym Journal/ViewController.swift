@@ -78,93 +78,103 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    func saveInputtedExerciseAttribute(sender: AddExerciseViewController)
-    {
-        NSLog("Save");
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(exerciseDetails, forKey: "currentInputtedExercise")
-        userDefaults.synchronize()
-        
-        //print for testing
-        NSLog("Exercise Details: ")
-        NSLog(exerciseDetails["exerciseName"]!)
-        NSLog(exerciseDetails["weightUnits"]!)
-        NSLog(exerciseDetails["weightAmount"]!)
-        NSLog(exerciseDetails["repsNumber"]!)
-        NSLog(exerciseDetails["dateRecorded"]!)
-    }
+//    func saveInputtedExerciseAttribute(sender: AddExerciseViewController)
+//    {
+//        NSLog("Save");
+//        let userDefaults = NSUserDefaults.standardUserDefaults()
+//        userDefaults.setObject(exerciseDetails, forKey: "currentInputtedExercise")
+//        userDefaults.synchronize()
+//        
+//        //print for testing
+//        NSLog("Exercise Details: ")
+//        NSLog(exerciseDetails["exerciseName"]!)
+//        NSLog(exerciseDetails["weightUnits"]!)
+//        NSLog(exerciseDetails["weightAmount"]!)
+//        NSLog(exerciseDetails["repsNumber"]!)
+//        NSLog(exerciseDetails["dateRecorded"]!)
+//    }
+//    
+//    
+//    func loadInputtedExerciseAttribute()
+//    {
+//        let userDefaults = NSUserDefaults.standardUserDefaults()
+//        if let storedDictionary = userDefaults.objectForKey("currentInputtedExercise")
+//        {
+//            if(storedDictionary.count == 0)
+//            {
+//                //initialize data structure that holds exercise details
+//                exerciseDetails = [:];
+//            }
+//                
+//            else
+//            {
+//                exerciseDetails = storedDictionary.mutableCopy() as! [String : String]
+//            }
+//        }
+//    }
     
-    
-    func loadInputtedExerciseAttribute()
-    {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        if let storedDictionary = userDefaults.objectForKey("currentInputtedExercise")
-        {
-            if(storedDictionary.count == 0)
-            {
-                //initialize data structure that holds exercise details
-                exerciseDetails = [:];
-            }
-                
-            else
-            {
-                exerciseDetails = storedDictionary.mutableCopy() as! [String : String]
-            }
-        }
-    }
-    
-    func addPersonalRecord()
+    func addPersonalRecord(sender: AddExerciseViewController)
     {
         NSLog("Add new item")
         
-        //create the text input field
-        var inputTextField: UITextField?
+//        //create the text input field
+//        var inputTextField: UITextField?
+//        
+//        //for now, use alert controller, later use a modal
+//        //create alert controlelr
+//        let alert = UIAlertController(title: "Log Exercise", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        //add cancel button
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+//        
+//        //add Ok button
+//        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+//            //Save word in array here
+//            
+//            NSLog("Text entered: " + (inputTextField?.text)!)
+//            
+//            let exercise = inputTextField!.text
+//            
+//            var nestedArray: [String] = []
+//            
+//            nestedArray.insert(exercise!, atIndex: 0)
+//            nestedArray.insert("195lbs for 1 rep", atIndex: 1)
+//            
+//            //usually would check for nil here, wasn't working in swift for some reason
+//            
+//            self.arrayOfExercises.insertObject(nestedArray, atIndex: 0)
+//                        
+//            //save array
+//            self.saveExercises()
+//            
+//            //work with table here
+//            
+//            //Both 0 because adding to the top of the table
+//            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+//            
+//            //Add to table
+//            self.exerciseTable.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//            
+//        }))
+//        
+//        //add text field
+//        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+//            textField.placeholder = "Exercise"
+//            inputTextField = textField;
+//        })
+//        
+//        //present the controller
+//        presentViewController(alert, animated: true, completion: nil);
         
-        //for now, use alert controller, later use a modal
-        //create alert controlelr
-        let alert = UIAlertController(title: "Log Exercise", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        self.arrayOfExercises.insertObject(exerciseDetails, atIndex: 0)
         
-        //add cancel button
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.saveExercises()
         
-        //add Ok button
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
-            //Save word in array here
-            
-            NSLog("Text entered: " + (inputTextField?.text)!)
-            
-            let exercise = inputTextField!.text
-            
-            var nestedArray: [String] = []
-            
-            nestedArray.insert(exercise!, atIndex: 0)
-            nestedArray.insert("195lbs for 1 rep", atIndex: 1)
-            
-            //usually would check for nil here, wasn't working in swift for some reason
-            
-            self.arrayOfExercises.insertObject(nestedArray, atIndex: 0)
-                        
-            //save array
-            self.saveExercises()
-            
-            //work with table here
-            
-            //Both 0 because adding to the top of the table
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-            
-            //Add to table
-            self.exerciseTable.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-            
-        }))
+        //Both 0 because adding to the top of the table
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         
-        //add text field
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.placeholder = "Exercise"
-            inputTextField = textField;
-        })
-        
-        //present the controller
-        presentViewController(alert, animated: true, completion: nil);
+        //Add to table
+        self.exerciseTable.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
         
     }
@@ -205,12 +215,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //Customize cell here
         
-        
         //call a get content function and put content here
-        let tempArray = self.arrayOfExercises[indexPath.row] as! [String]
+        let tempDictionary = self.arrayOfExercises[indexPath.row]
         
-        cellToReturn?.textLabel?.text = tempArray[0]
-        cellToReturn?.detailTextLabel?.text = tempArray[1]
+        let exName: String = tempDictionary["exerciseName"] as! String
+        
+        let weight: String = tempDictionary["weightAmount"] as! String
+        
+        cellToReturn!.textLabel!.text = exName;
+        cellToReturn?.detailTextLabel!.text = weight;
+        
         
         return cellToReturn!
     }
