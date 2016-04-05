@@ -211,9 +211,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let dateRecorded: String = tempDictionary["dateRecorded"] as! String
         
+        var singOrPlur: String = ""
+        
         cellToReturn.ExerciseNameLabel.text = exerciseName
         
-        cellToReturn.WeightAndRepsLabel.text = weightAmount + weightUnits + " for " + repsNumber + " reps "
+        if(repsNumber == "1")
+        {
+            singOrPlur = " rep"
+        }
+        else
+        {
+            singOrPlur = " reps"
+        }
+        cellToReturn.WeightAndRepsLabel.text = weightAmount + weightUnits + " for " + repsNumber + singOrPlur
         
         cellToReturn.DateRecordedLabel.text = dateRecorded
         

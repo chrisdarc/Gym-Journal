@@ -8,42 +8,48 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="156" id="KGk-i7-Jjw" customClass="ExerciseTableViewCell" customModule="Gym_Journal" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="110" id="KGk-i7-Jjw" customClass="ExerciseTableViewCell" customModule="Gym_Journal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="287" height="109"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeightAndRepsLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrR-O9-CuC">
-                        <rect key="frame" x="8" y="8" width="271" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DateRecordedLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5G-hM-Klw">
-                        <rect key="frame" x="8" y="70" width="271" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ExerciseNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2N-Qa-ZGB">
-                        <rect key="frame" x="8" y="38" width="279" height="23"/>
+                        <rect key="frame" x="8" y="8" width="279" height="23"/>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeightAndRepsLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrR-O9-CuC">
+                        <rect key="frame" x="8" y="39" width="271" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="vBC-mY-x5k"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DateRecordedLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5G-hM-Klw">
+                        <rect key="frame" x="8" y="67" width="271" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="H3v-Ks-FDb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="M2N-Qa-ZGB" secondAttribute="trailing" id="1DX-91-Knb"/>
-                    <constraint firstItem="mrR-O9-CuC" firstAttribute="leading" secondItem="M2N-Qa-ZGB" secondAttribute="leading" id="6HQ-JC-KDu"/>
-                    <constraint firstItem="z5G-hM-Klw" firstAttribute="leading" secondItem="M2N-Qa-ZGB" secondAttribute="leading" id="829-e1-c4q"/>
-                    <constraint firstItem="mrR-O9-CuC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DwS-c5-AHR"/>
-                    <constraint firstItem="M2N-Qa-ZGB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Rci-Zs-cEu"/>
-                    <constraint firstItem="M2N-Qa-ZGB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="cFG-e0-86v"/>
-                    <constraint firstItem="z5G-hM-Klw" firstAttribute="trailing" secondItem="mrR-O9-CuC" secondAttribute="trailing" id="cGV-WP-Jfc"/>
-                    <constraint firstItem="mrR-O9-CuC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ibG-Vc-noC"/>
-                    <constraint firstItem="z5G-hM-Klw" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="tCn-XE-bTo"/>
+                    <constraint firstItem="z5G-hM-Klw" firstAttribute="leading" secondItem="mrR-O9-CuC" secondAttribute="leading" id="2Cd-CL-5JA"/>
+                    <constraint firstItem="z5G-hM-Klw" firstAttribute="trailing" secondItem="mrR-O9-CuC" secondAttribute="trailing" id="AAc-Dj-KkG"/>
+                    <constraint firstItem="z5G-hM-Klw" firstAttribute="top" secondItem="mrR-O9-CuC" secondAttribute="bottom" constant="8" symbolic="YES" id="C6Y-IV-R2r"/>
+                    <constraint firstItem="M2N-Qa-ZGB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Odz-gc-xxu"/>
+                    <constraint firstAttribute="trailing" secondItem="M2N-Qa-ZGB" secondAttribute="trailing" id="Rhr-Jy-dHd"/>
+                    <constraint firstItem="mrR-O9-CuC" firstAttribute="top" secondItem="M2N-Qa-ZGB" secondAttribute="bottom" constant="8" symbolic="YES" id="gQP-vQ-0aT"/>
+                    <constraint firstItem="mrR-O9-CuC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="kC7-Oy-mGI"/>
+                    <constraint firstItem="z5G-hM-Klw" firstAttribute="leading" secondItem="M2N-Qa-ZGB" secondAttribute="leading" id="oyD-ns-gm6"/>
+                    <constraint firstItem="M2N-Qa-ZGB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="zTY-5g-9ef"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -51,7 +57,7 @@
                 <outlet property="ExerciseNameLabel" destination="M2N-Qa-ZGB" id="SVl-kR-0WL"/>
                 <outlet property="WeightAndRepsLabel" destination="mrR-O9-CuC" id="sr0-CR-48T"/>
             </connections>
-            <point key="canvasLocation" x="215" y="507"/>
+            <point key="canvasLocation" x="215" y="524"/>
         </tableViewCell>
     </objects>
 </document>
