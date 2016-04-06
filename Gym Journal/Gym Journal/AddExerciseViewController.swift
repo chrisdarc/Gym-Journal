@@ -92,8 +92,12 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //this function also used to store info from date picker.
     @IBAction func dateDoneButtonPressed(sender: AnyObject)
     {
-        delegate?.addInputtedExerciseAttribute(self, exerciseKey: "dateRecorded", exerciseValue: dateInputPicker.date.description)
+        let dateFormatter = NSDateFormatter()
+        //dateFormatter.dateFormat = "MMMM d, yyyy"
+        dateFormatter.dateStyle = .FullStyle
+        let dateString = dateFormatter.stringFromDate(dateInputPicker.date)
         
+        delegate?.addInputtedExerciseAttribute(self, exerciseKey: "dateRecorded", exerciseValue: dateString)
         
         delegate?.addPersonalRecord(self)
         
