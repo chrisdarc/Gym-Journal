@@ -46,7 +46,6 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        
     }
 
     override func didReceiveMemoryWarning()
