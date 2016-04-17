@@ -46,6 +46,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let ExerciseTableViewCellNib = UINib(nibName: "ExerciseTableViewCell", bundle: nil)
         
         self.exerciseTable.registerNib(ExerciseTableViewCellNib, forCellReuseIdentifier: "Cell")
+        
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated);
+        if let indexPath = exerciseTable.indexPathForSelectedRow
+        {
+            exerciseTable.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
     
     func saveExercises()
@@ -239,7 +249,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //did select row at index path
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        NSLog("Cell at row number: \(indexPath.row)")
+        NSLog("Cell selected at row number: \(indexPath.row)")
+        
+        self.performSegueWithIdentifier("toEditExercise", sender: self)
+        
     }
     
     //table view can edit row at index path

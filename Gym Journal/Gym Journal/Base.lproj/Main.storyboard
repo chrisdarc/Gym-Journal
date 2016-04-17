@@ -44,11 +44,151 @@
                     </navigationItem>
                     <connections>
                         <outlet property="exerciseTable" destination="5m7-eb-PmV" id="FcY-LE-OSa"/>
+                        <segue destination="5GT-uM-2M5" kind="show" identifier="toEditExercise" id="gZu-XS-KuB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1377" y="479"/>
+        </scene>
+        <!--Edit Exercise-->
+        <scene sceneID="hbM-x1-Leo">
+            <objects>
+                <tableViewController title="Edit Exercise" id="5GT-uM-2M5" customClass="EditExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eRd-O8-H6l">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Exercise Name:" id="sMA-EJ-5O0">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="bPo-Uu-oPb">
+                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bPo-Uu-oPb" id="R1C-xW-Wl9">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Name Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5k-ZG-cQQ">
+                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="X5k-ZG-cQQ" firstAttribute="leading" secondItem="R1C-xW-Wl9" secondAttribute="leadingMargin" id="7Vq-Se-aXE"/>
+                                                <constraint firstItem="X5k-ZG-cQQ" firstAttribute="centerY" secondItem="R1C-xW-Wl9" secondAttribute="centerY" id="89Z-2C-UNy"/>
+                                                <constraint firstItem="X5k-ZG-cQQ" firstAttribute="trailing" secondItem="R1C-xW-Wl9" secondAttribute="trailingMargin" id="f1L-lh-xvp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Weight:" id="xQD-BD-5Y5">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="85" id="7U7-eJ-WJo">
+                                        <rect key="frame" x="0.0" y="209" width="600" height="85"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7U7-eJ-WJo" id="2mE-XY-IJl">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2TI-rI-oSf">
+                                                    <rect key="frame" x="8" y="44" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ntd-Ds-qjN">
+                                                    <rect key="frame" x="8" y="8" width="584" height="29"/>
+                                                    <segments>
+                                                        <segment title="lbs"/>
+                                                        <segment title="Kg"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ntd-Ds-qjN" firstAttribute="top" secondItem="2mE-XY-IJl" secondAttribute="topMargin" id="Gd6-sb-DL0"/>
+                                                <constraint firstItem="ntd-Ds-qjN" firstAttribute="trailing" secondItem="2mE-XY-IJl" secondAttribute="trailingMargin" id="Lrq-Dl-9Zl"/>
+                                                <constraint firstItem="ntd-Ds-qjN" firstAttribute="leading" secondItem="2TI-rI-oSf" secondAttribute="leading" id="MrC-2j-9e7"/>
+                                                <constraint firstItem="ntd-Ds-qjN" firstAttribute="trailing" secondItem="2TI-rI-oSf" secondAttribute="trailing" id="NSj-NI-R1w"/>
+                                                <constraint firstItem="ntd-Ds-qjN" firstAttribute="leading" secondItem="2mE-XY-IJl" secondAttribute="leadingMargin" id="WQe-FG-cli"/>
+                                                <constraint firstItem="2TI-rI-oSf" firstAttribute="top" secondItem="ntd-Ds-qjN" secondAttribute="bottom" constant="8" symbolic="YES" id="vRo-Tl-YtU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Reps:" id="QNr-CA-J1R">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="216" id="Rpg-SM-7ve">
+                                        <rect key="frame" x="0.0" y="345" width="600" height="216"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rpg-SM-7ve" id="ygV-Cj-8J3">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfv-8V-HM9">
+                                                    <rect key="frame" x="0.0" y="-1" width="600" height="216"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="5GT-uM-2M5" id="a6b-VM-TkL"/>
+                                                        <outlet property="delegate" destination="5GT-uM-2M5" id="s0d-lq-GSc"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="rfv-8V-HM9" secondAttribute="trailing" id="26k-gg-T2G"/>
+                                                <constraint firstItem="rfv-8V-HM9" firstAttribute="leading" secondItem="ygV-Cj-8J3" secondAttribute="leading" id="7Bt-Vu-U9o"/>
+                                                <constraint firstAttribute="bottom" secondItem="rfv-8V-HM9" secondAttribute="bottom" id="n0B-v3-Kbo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Date:" id="drX-e7-fq2">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="216" id="rtT-0Z-YGw">
+                                        <rect key="frame" x="0.0" y="612" width="600" height="216"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rtT-0Z-YGw" id="Bek-VT-YgA">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vIW-RR-1lH">
+                                                    <rect key="frame" x="0.0" y="-1" width="600" height="216"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="482625765.27839702">
+                                                        <!--2016-04-17 22:42:45 +0000-->
+                                                    </date>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="vIW-RR-1lH" secondAttribute="bottom" id="OIe-Zk-tP0"/>
+                                                <constraint firstAttribute="trailing" secondItem="vIW-RR-1lH" secondAttribute="trailing" id="Oc8-rR-GV5"/>
+                                                <constraint firstItem="vIW-RR-1lH" firstAttribute="leading" secondItem="Bek-VT-YgA" secondAttribute="leading" id="RhU-mb-Bla"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="5GT-uM-2M5" id="Oh7-lS-Nat"/>
+                            <outlet property="delegate" destination="5GT-uM-2M5" id="7yH-JD-eWC"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="dateInputPicker" destination="vIW-RR-1lH" id="28x-1s-Vx7"/>
+                        <outlet property="exerciseInputText" destination="X5k-ZG-cQQ" id="v5E-2E-H9V"/>
+                        <outlet property="repsInputPicker" destination="rfv-8V-HM9" id="HCn-LP-xpt"/>
+                        <outlet property="weightInputText" destination="2TI-rI-oSf" id="dYU-nb-KvV"/>
+                        <outlet property="weightInputUnitChooser" destination="ntd-Ds-qjN" id="0c5-JM-E1i"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ydl-dL-0eQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2147" y="479"/>
         </scene>
         <!--Exercise-->
         <scene sceneID="Qbf-Uh-T8S">

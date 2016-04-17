@@ -56,7 +56,7 @@ class AddExerciseViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     
-    //dateInputPicker - setup------------------------------------
+    //repsInputPicker - setup------------------------------------
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
     {
         return 1;
