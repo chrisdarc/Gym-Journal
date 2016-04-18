@@ -41,6 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //Add edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.exerciseTable.allowsSelectionDuringEditing = false;
         
         //Add plus button - decided to do this with a storyboard and segue instead
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.addPersonalRecord))
@@ -181,12 +182,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //---------------------------------------------
     //Table View Stuff
     
-    //setEditing
-    override func setEditing(editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        exerciseTable.setEditing(editing, animated: animated)
-    }
-    
     //number of sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
@@ -274,8 +269,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return true;
     }
     
+    
+    //setEditing
+    override func setEditing(editing: Bool, animated: Bool)
+    {
+        exerciseTable.setEditing(editing, animated: animated)
+        super.setEditing(editing, animated: animated)
+    }
+    
     //table view commit editing style/swipe to delete
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
         if (editingStyle == UITableViewCellEditingStyle.Delete)
         {
             //remove from array
@@ -287,6 +291,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //remove from table view
             exerciseTable.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         }
+    }
+    
+    //these two begin and end editing row at index path fix a bug where the edit and done button doesn't change state
+    func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath)
+    {
+        setEditing(true, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+        setEditing(false, animated: false)
     }
     
     //can move cell
