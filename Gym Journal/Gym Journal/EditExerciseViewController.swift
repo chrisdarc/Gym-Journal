@@ -33,6 +33,10 @@ class EditExerciseViewController: UITableViewController, UIPickerViewDelegate, U
     //"repsNumber"
     //"dateRecorded"
     
+    
+    //index of the record being updated
+    var indexOfRecord:Int = 0
+    
     //Input Outlets and other useful stuff-----------------------
     
     //exerciseInput
@@ -85,9 +89,10 @@ class EditExerciseViewController: UITableViewController, UIPickerViewDelegate, U
     }
     
     
-    func getExercisesDictionary(dict: [String:String])
+    func getExercisesDictionary(dict: [String:String], index: Int)
     {
         exerciseDetails = dict
+        indexOfRecord = index
     }
     
     
@@ -120,6 +125,19 @@ class EditExerciseViewController: UITableViewController, UIPickerViewDelegate, U
     func saveChanges()
     {
         NSLog("Save Pressed")
+        
+        //save everything in dictionary
+        exerciseDetails["weightUnits"] = weightInputUnitChooser.titleForSegmentAtIndex(weightInputUnitChooser.selectedSegmentIndex)
+        exerciseDetails["weightAmount"] = weightInputText.text
+        exerciseDetails["repsNumber"] = String(repsInputPickerResult)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .FullStyle
+        let dateString = dateFormatter.stringFromDate(dateInputPicker.date)
+        exerciseDetails["dateRecorded"] = dateString
+        
+        delegate?.updatePersonalRecord(self, indexToUpdate: indexOfRecord, dictionaryForUpdate: exerciseDetails)
+        self.navigationController?.popViewControllerAnimated(true)
+        //navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
 

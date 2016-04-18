@@ -309,7 +309,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             let tempDict = self.arrayOfExercises[tempExerciseTableIndexPathSelected] as! [String:String]
             let editExerciseViewController = segue.destinationViewController as! EditExerciseViewController
-            editExerciseViewController.getExercisesDictionary(tempDict)
+            editExerciseViewController.getExercisesDictionary(tempDict, index: tempExerciseTableIndexPathSelected)
             editExerciseViewController.delegate = self
             
         }
