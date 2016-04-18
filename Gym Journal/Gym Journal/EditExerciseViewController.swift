@@ -8,8 +8,30 @@
 
 import UIKit
 
+//delegate to ViewController stuff
+protocol EditExerciseViewControllerDelegate: class
+{
+    //func addInputtedExerciseAttribute(sender: AddExerciseViewController, exerciseKey: String, exerciseValue: String)
+    
+    //func addPersonalRecord(sender: AddExerciseViewController)
+    
+    func updatePersonalRecord(sender: EditExerciseViewController, indexToUpdate: Int, dictionaryForUpdate: [String:String])
+}
+
 class EditExerciseViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
+    
+    weak var delegate:EditExerciseViewControllerDelegate?
+    
+    
+    //dictionary to store items
+    var exerciseDetails:[String:String] = [:]
+    //can have the keys
+    //"exerciseName"
+    //"weightUnits"
+    //"weightAmount"
+    //"repsNumber"
+    //"dateRecorded"
     
     //Input Outlets and other useful stuff-----------------------
     
@@ -35,14 +57,37 @@ class EditExerciseViewController: UITableViewController, UIPickerViewDelegate, U
         // Do any additional setup after loading the view.
         self.title = "Edit Exercise"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(self.saveChanges))
-        //self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
+        //set up all the IBOutlets
+        exerciseInputText.text = exerciseDetails["exerciseName"]
+        weightInputText.text = exerciseDetails["weightAmount"]
+        if(exerciseDetails["weightUnits"] == "lbs")
+        {
+            weightInputUnitChooser.selectedSegmentIndex = 0
+        }
+        else
+        {
+            weightInputUnitChooser.selectedSegmentIndex = 1
+        }
+        
+        repsInputPicker.selectRow(Int(exerciseDetails["repsNumber"]!)!-1, inComponent: 0, animated: true)
+        
+        let convertToDate = NSDateFormatter()
+        convertToDate.dateStyle = .FullStyle
+        let dateFromString = convertToDate.dateFromString(exerciseDetails["dateRecorded"]!)
+        dateInputPicker.date = dateFromString!
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func getExercisesDictionary(dict: [String:String])
+    {
+        exerciseDetails = dict
     }
     
     
@@ -62,6 +107,7 @@ class EditExerciseViewController: UITableViewController, UIPickerViewDelegate, U
         //plus 1 so that picker view starts at 1 and goes to 100
         return String(row+1)
     }
+    
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {

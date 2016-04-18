@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddExerciseViewControllerDelegate
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddExerciseViewControllerDelegate, EditExerciseViewControllerDelegate
 {
     //Array to store all exercises.
     //could use [AnyObject]
@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //"weightAmount"
     //"repsNumber"
     //"dateRecorded"
+    
+    var tempExerciseTableIndexPathSelected = 0
     
     //table view
     @IBOutlet
@@ -99,6 +101,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func eraseExerciseDetailsDictionary()
     {
         exerciseDetails = [:]
+    }
+    
+    func updatePersonalRecord(sender: EditExerciseViewController, indexToUpdate: Int, dictionaryForUpdate: [String:String])
+    {
+        self.arrayOfExercises[indexToUpdate] = dictionaryForUpdate
+        
+        self.saveExercises()
+        
+        self.exerciseTable.reloadData()
     }
     
     func addPersonalRecord(sender: AddExerciseViewController)
@@ -251,6 +262,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         NSLog("Cell selected at row number: \(indexPath.row)")
         
+        tempExerciseTableIndexPathSelected = indexPath.row
+        
         self.performSegueWithIdentifier("toEditExercise", sender: self)
         
     }
@@ -291,6 +304,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let nav = segue.destinationViewController as! UINavigationController
             let addExerciseViewController = nav.topViewController as! AddExerciseViewController
             addExerciseViewController.delegate = self
+        }
+        else if(segue.identifier == "toEditExercise")
+        {
+            let tempDict = self.arrayOfExercises[tempExerciseTableIndexPathSelected] as! [String:String]
+            let editExerciseViewController = segue.destinationViewController as! EditExerciseViewController
+            editExerciseViewController.getExercisesDictionary(tempDict)
+            editExerciseViewController.delegate = self
+            
         }
     }
     
