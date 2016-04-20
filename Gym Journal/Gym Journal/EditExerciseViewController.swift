@@ -80,6 +80,26 @@ class EditExerciseViewController: UITableViewController, UIPickerViewDelegate, U
         convertToDate.dateStyle = .FullStyle
         let dateFromString = convertToDate.dateFromString(exerciseDetails["dateRecorded"]!)
         dateInputPicker.date = dateFromString!
+        
+        //make the keyboard for the weight input a number pad
+        weightInputText.keyboardType = UIKeyboardType.DecimalPad
+        
+        //create the done button
+        let keyboardDoneButtonView = UIToolbar.init()
+        keyboardDoneButtonView.sizeToFit()
+        //adding this flex button makes the done button appear on the right.  The flex button does nothing.
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: #selector(self.keyboardDonePressed))
+        keyboardDoneButtonView.items = [flexBarButton, doneButton]
+        //keyboardDoneButtonView.setItems(NSArray(objects: doneButton) as? [UIBarButtonItem], animated: true)
+        weightInputText.inputAccessoryView = keyboardDoneButtonView
+        
+    }
+    
+    func keyboardDonePressed()
+    {
+        NSLog("Keyboard Done Pressed")
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning()

@@ -246,7 +246,7 @@
         <!--Weight-->
         <scene sceneID="zGE-o5-yc8">
             <objects>
-                <viewController storyboardIdentifier="WeightInput" title="Weight" id="Z6S-FR-0PI" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="WeightInputRestoreID" storyboardIdentifier="WeightInput" title="Weight" id="Z6S-FR-0PI" customClass="AddExerciseViewController" customModule="Gym_Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZHr-yx-NfI"/>
                         <viewControllerLayoutGuide type="bottom" id="ifN-XN-qvU"/>
